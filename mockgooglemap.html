@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UMass Amherst Map</title>
+    <meta charset="utf-8" />
+    <style>
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>UMass Amherst Map</h3>
+    <div id="map"></div>
+
+    <script>
+  function initMap() {
+    const locations = [
+      { name: "Holdsworth Hall", position: { lat: 42.39278, lng: -72.53094 } },
+      { name: "Campus Pond", position: { lat: 42.38962, lng: -72.52645 } },
+      { name: "W.E.B. Du Bois Library", position: { lat: 42.38981, lng: -72.52830 } },
+      { name: "Integrated Science Building", position: { lat: 42.39240, lng: -72.52478 } },
+      { name: "Morrill Life and Earth Cafe", position: { lat: 42.38970, lng: -72.52460 } }
+    ];
+
+    const centerMarker = locations[0].position;
+
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 17,
+      center: centerMarker
+    });
+
+    const bounds = new google.maps.LatLngBounds();
+
+    locations.forEach(loc => {
+      new google.maps.Marker({
+        position: loc.position,
+        map: map
+      });
+      bounds.extend(loc.position);
+    });
+  }
+</script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9gvt0D0yKePhQoWogvTmTGIXE6djxvdA&callback=initMap">
+    </script>
+  </body>
+</html>
